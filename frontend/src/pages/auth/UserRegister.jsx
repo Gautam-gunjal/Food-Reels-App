@@ -1,29 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/auth-page.css'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 const UserRegister = () => {
+    const [error, setError] = useState("");
     const navigate = useNavigate()
     const onSubmit = async (e) => {
-    e.preventDefault()
-    const name = e.target.name.value
-    const email = e.target.email.value
-    const password = e.target.password.value
+        e.preventDefault()
+        const name = e.target.name.value
+        const email = e.target.email.value
+        const password = e.target.password.value
 
-    try {
-        await axios.post("https://food-reels-app.onrender.com/api/auth/user/register",
-            {
-                name: name,
-                email: email,
-                password: password
+        try {
+            await axios.post("https://food-reels-app.onrender.com/api/auth/user/register",
+                {
+                    name: name,
+                    email: email,
+                    password: password
 
-            }, { withCredentials: true }
-        )
-        navigate("/");
-    } catch (err) {
-        console.log(err)
+                }, { withCredentials: true }
+            )
+            navigate("/");
+        } catch (err) {
+            const message = err.response?.data?.message || "Registration failed";
+            setError(message);
+
+            setTimeout(() => {
+                setError("");
+            }, 5000);
+        }
     }
-}
     return (
         <div className="auth-page">
             <div className="auth-card">
@@ -46,13 +52,14 @@ const UserRegister = () => {
                         <input type="password" placeholder="••••••••" name="password" />
                     </div>
 
+                    {error && <p className="error-message">{error}</p>}
 
                     <div className="actions">
                         <button type="submit" className="btn">Create account</button>
                         <div className="link-muted">Already have an account? <a href="/user/login">Login</a></div>
                     </div>
 
-                    <div className="link-muted" style={{marginTop:10}}>
+                    <div className="link-muted" style={{ marginTop: 10 }}>
                         Register as Food Partner? <Link to="/food-partner/register">Switch to Partner</Link>
                     </div>
 

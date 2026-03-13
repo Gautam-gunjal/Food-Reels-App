@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/auth-page.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const FoodPartnerRegister = () => {
+  const [error, setError] = useState('')
   const navigate = useNavigate()
   const onSubmit = async (e) => {
 
@@ -28,7 +29,12 @@ const FoodPartnerRegister = () => {
       )
       navigate("/Createfood");
     } catch (err) {
-      console.log(err)
+      const message = err.response?.data?.message || "Registration failed";
+      setError(message);
+
+      setTimeout(() => {
+        setError("");
+      }, 5000);
     }
   }
 
@@ -49,7 +55,7 @@ const FoodPartnerRegister = () => {
             <input type="text" name="contactPerson" placeholder="Your name" />
           </div>
 
-           <div className="field">
+          <div className="field">
             <label>Address</label>
             <input type="text" name="address" placeholder="Your Address" />
           </div>
@@ -64,9 +70,11 @@ const FoodPartnerRegister = () => {
             <input type="password" name="password" placeholder="••••••••" />
           </div>
 
+          {error && (<p className="error-message"> {error}</p>)}
+
           <div className="actions">
             <button type="submit" className="btn">Register partner</button>
-            <div className="link-muted">Already partnered? <a href="/food-partner/login">Login</a></div>
+            <div className="link-muted">Already partnered? <Link to="/food-partner/login">Login</Link></div>
           </div>
 
           <div className="link-muted" style={{ marginTop: 10 }}>
