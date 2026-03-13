@@ -29,7 +29,12 @@ const FoodPartnerLogin = () => {
       navigate("/Createfood");
 
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      const message = err.response?.data?.message || "Login failed";
+      setError(message);
+
+      setTimeout(() => {
+        setError("");
+      }, 5000);
     }
   }
   return (
