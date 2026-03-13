@@ -17,7 +17,7 @@ export default function CommentSection({ onClose, setCommentsCount, video }) {
       try {
 
         const res = await axios.get(
-          `http://localhost:3000/api/food/Comments/${video._id}`);
+          `https://food-reels-app.onrender.com/api/food/Comments/${video._id}`);
 
         setComments(res.data.comments);
 
@@ -34,7 +34,7 @@ export default function CommentSection({ onClose, setCommentsCount, video }) {
   const add = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:3000/api/food/CommentFood', { foodId: video._id, text }, { withCredentials: true })
+      const res = await axios.post('https://food-reels-app.onrender.com/api/food/CommentFood', { foodId: video._id, text }, { withCredentials: true })
       setComments(prev => [res.data.comment, ...prev]);
       setCommentsCount(prev => prev + 1);
       setText('');
@@ -47,7 +47,7 @@ export default function CommentSection({ onClose, setCommentsCount, video }) {
   try {
 
     const res = await axios.post(
-      "http://localhost:3000/api/food/commentLike",
+      "https://food-reels-app.onrender.com/api/food/commentLike",
       { commentId: id },
       { withCredentials: true }
     );

@@ -15,7 +15,7 @@ export default function Profile() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/api/food-partner/${id}`, { withCredentials: true })
+            .get(`https://food-reels-app.onrender.com/api/food-partner/${id}`, { withCredentials: true })
             .then((res) => {
                 setprofile(res.data.foodpartner);
                 setVideos(res.data.foodpartner.fooditems || []);

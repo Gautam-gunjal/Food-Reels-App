@@ -11,7 +11,7 @@ const UserRegister = () => {
     const password = e.target.password.value
 
     try {
-        await axios.post("http://localhost:3000/api/auth/user/register",
+        await axios.post("https://food-reels-app.onrender.com/api/auth/user/register",
             {
                 name: name,
                 email: email,

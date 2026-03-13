@@ -50,7 +50,7 @@ const Saved = () => {
     async function fetchSaved() {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/api/food/SavedFoods", { withCredentials: true });
+        const res = await axios.get("https://food-reels-app.onrender.com/api/food/SavedFoods", { withCredentials: true });
         const saved = (res.data.savedfoods || []).map((f) => ({
           _id: f.foodId._id,
           video: f.foodId.video,

@@ -66,7 +66,7 @@ const Home = () => {
     async function fetchVideos() {
       try { 
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/api/food/",{ withCredentials: true });
+        const res = await axios.get("https://food-reels-app.onrender.com/api/food/",{ withCredentials: true });
         // backend returns { message: "...", fooditems: [...] }
         setVideos(res.data?.fooditems || []);
       } catch (err) {

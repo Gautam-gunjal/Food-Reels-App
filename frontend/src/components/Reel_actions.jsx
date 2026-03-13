@@ -15,7 +15,7 @@ const ReelActions = ({ video }) => {
     try {
 
       const res = await axios.post(
-        "http://localhost:3000/api/food/like",
+        "https://food-reels-app.onrender.com/api/food/like",
         { foodId: video._id },
         { withCredentials: true }
       );
@@ -36,7 +36,7 @@ const ReelActions = ({ video }) => {
 
   const toggleSave = async () => {
     try{
-      const res = await axios.post('http://localhost:3000/api/food/save',{foodId:video._id},{withCredentials:true})
+      const res = await axios.post('https://food-reels-app.onrender.com/api/food/save',{foodId:video._id},{withCredentials:true})
 
       if(res.data.message === 'Food Unsaved successfully'){
         setSaved(false)

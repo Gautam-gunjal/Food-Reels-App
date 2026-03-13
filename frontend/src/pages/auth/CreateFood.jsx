@@ -39,7 +39,7 @@ const CreateFood = () => {
     formData.append('video', videoFile)
 
     try {
-      await axios.post("http://localhost:3000/api/food", formData, {
+      await axios.post("https://food-reels-app.onrender.com/api/food", formData, {
         withCredentials: true,
       })
       navigate('/')  

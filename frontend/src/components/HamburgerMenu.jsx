@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
 
   useEffect(() => {
     const getRole = async () => {
-      const role = await axios.get('http://localhost:3000/api/auth/role', { withCredentials: true })
+      const role = await axios.get('https://food-reels-app.onrender.com/api/auth/role', { withCredentials: true })
       setRole(role.data.role)
     }
     getRole()
@@ -21,7 +21,7 @@ const HamburgerMenu = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/auth/user/logout",
+        "https://food-reels-app.onrender.com/api/auth/user/logout",
         {},
         { withCredentials: true }
       );
