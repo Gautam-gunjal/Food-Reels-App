@@ -175,7 +175,7 @@ async function RoleDetection(req, res) {
     const token = req.cookies.token;
 
     if (!token) {
-        res.status(401).json({
+       return res.status(401).json({
             message: 'Please Login First'
         })
     }
@@ -192,7 +192,7 @@ async function RoleDetection(req, res) {
 
         const foodpartner = await foodPartnermodel.findById(decoded.id)
         if(foodpartner){
-            res.json({
+           return res.json({
                 role:'foodPartner'
             })
         }
