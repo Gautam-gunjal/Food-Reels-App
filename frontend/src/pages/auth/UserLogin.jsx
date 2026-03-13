@@ -51,7 +51,7 @@ const UserLogin = () => {
           
           <div className="actions">
             <button type="submit" className="btn">Login</button>
-            <div className="link-muted">New here? <a href="/user/register">Create account</a></div>
+            <div className="link-muted">New here? <Link to="/user/register">Create account</Link></div>
           </div>
 
           <div className="link-muted" style={{ marginTop: 10 }}>

@@ -56,7 +56,7 @@ const UserRegister = () => {
 
                     <div className="actions">
                         <button type="submit" className="btn">Create account</button>
-                        <div className="link-muted">Already have an account? <a href="/user/login">Login</a></div>
+                        <div className="link-muted">Already have an account? <Link to="/user/login">Login</Link></div>
                     </div>
 
                     <div className="link-muted" style={{ marginTop: 10 }}>

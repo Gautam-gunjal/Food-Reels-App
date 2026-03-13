@@ -53,7 +53,9 @@ const FoodPartnerLogin = () => {
             <label>Password</label>
             <input type="password" name="password" placeholder="••••••" />
           </div>
+
           {error && <p className="error-message">{error}</p>}
+          
           <div className="actions">
             <button type="submit" className="btn">Login</button>
             <div className="link-muted">Don't have an account? <Link to="/food-partner/register">Register</Link></div>
