@@ -1,0 +1,128 @@
+/* Component-specific tweaks for CreateFood form
+   Mobile-first: base styles target small screens, then add
+   breakpoints for larger viewports (min-width: 520px).
+*/
+
+.create-food-card .food-video-field input[type="file"]{
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  color: inherit;
+}
+
+/* Mobile-first: smaller preview height by default */
+.food-video-preview{
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #000;
+  max-height: 240px;
+}
+
+.create-food-card .field textarea{
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  color: inherit;
+  font-size: 0.96rem;
+  resize: vertical;
+}
+
+/* Styled uploader - stacked for small screens */
+.video-uploader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px dashed rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  cursor: pointer;
+  color: inherit;
+  text-align: center;
+}
+
+.video-uploader svg{
+  flex: 0 0 auto;
+  color: var(--accent);
+  width: 36px;
+  height: 36px;
+}
+
+.video-uploader .video-uploader-text{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-uploader .title{
+  font-weight: 600;
+}
+
+.video-uploader .muted{
+  color: rgba(107,114,128,0.6);
+  font-size: 0.83rem;
+}
+
+.video-uploader:hover{
+  border-color: color-mix(in srgb, var(--accent) 60%, white 40%);
+  box-shadow: 0 8px 30px rgba(37,99,235,0.06);
+  transform: translateY(-2px);
+}
+
+.video-file-name{
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-preview-wrap{
+  position: relative;
+}
+
+.video-remove-btn{
+  background: linear-gradient(180deg, var(--accent-1), #ff5b6b);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.video-remove-btn:hover{
+  background: rgba(0,0,0,0.7);
+}
+
+/* Larger screens: switch to row layout and increase preview height */
+@media (min-width: 520px){
+  .video-uploader{
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .video-uploader .video-uploader-text{
+    align-items: flex-start;
+  }
+
+  .video-file-name{
+    margin-left: auto;
+    max-width: 40%;
+  }
+
+  .food-video-preview{
+    max-height: 320px;
+  }
+}

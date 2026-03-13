@@ -1,0 +1,210 @@
+/* ===== Scoped Comment Section Styles ===== */
+
+.cs-overlay{
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.60));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1200;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 12px;
+}
+
+/* Panel */
+.cs-overlay .cs-panel{
+  width: 100%;
+  max-width: 720px;
+  height: 82%;
+  background: linear-gradient(180deg, rgba(20,20,22,0.92), rgba(10,10,12,0.98));
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(2,8,23,0.55);
+  transform: translateY(18px);
+  animation: cs-slideUp 240ms cubic-bezier(.2,.95,.2,1) forwards;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Header */
+.cs-overlay .cs-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0));
+}
+
+.cs-overlay .cs-close{
+  background: rgba(255,255,255,0.03);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  cursor:pointer;
+  transition: transform .14s ease, background .14s ease;
+}
+
+.cs-overlay .cs-close:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.06);
+}
+
+.cs-overlay .cs-title{
+  flex:1;
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+}
+
+.cs-overlay .cs-count{
+  color:#0f1720;
+  background: linear-gradient(90deg,#2ee6a6,#2ea44f);
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+}
+
+/* List */
+.cs-overlay .cs-list{
+  overflow:auto;
+  padding:12px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Comment item */
+.cs-overlay .cs-item{
+  display:flex;
+  gap:12px;
+  padding:8px 0;
+  align-items: center;
+}
+
+/* Avatar */
+.cs-overlay .cs-avatar{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:14px;
+  flex-shrink:0;
+}
+
+/* Body */
+.cs-overlay .cs-body{
+  flex:1;
+  min-width:0;
+}
+
+/* Username + comment row */
+.cs-overlay .cs-row{
+  display:flex;
+  align-items:flex-start;
+  gap:6px;
+}
+
+/* Username */
+.cs-overlay .cs-user{
+  font-weight:600;
+  color:#fff;
+}
+
+/* Comment text (inline like Instagram) */
+.cs-overlay .cs-text{
+  color:#e6e6e6;
+  font-size:14px;
+  line-height:1.3;
+}
+
+/* Meta row */
+.cs-overlay .cs-meta{
+  display:flex;
+  align-items:center;
+  margin-top:4px;
+  font-size:12px;
+  color:rgba(255,255,255,0.55);
+}
+
+/* Like button pushed right */
+.cs-overlay .cs-like{
+  margin-left:auto;
+  background:none;
+  border:none;
+  color:rgba(255,255,255,0.6);
+  cursor:pointer;
+  font-size:13px;
+}
+
+.cs-overlay .cs-like.liked{
+  color:#ff3040;
+}
+
+/* Input */
+.cs-overlay .cs-input{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,0.03);
+}
+
+.cs-overlay .cs-input input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:999px;
+  border:none;
+  background: rgba(255,255,255,0.04);
+  color:#fff;
+}
+
+.cs-overlay .cs-post{
+  background:none;
+  border:none;
+  color:rgba(255,255,255,0.45);
+  cursor:pointer;
+}
+
+.cs-overlay .cs-post.active{
+  color:#fff;
+  font-weight:600;
+}
+
+/* Animation */
+@keyframes cs-slideUp{
+  from{ transform: translateY(18px); opacity: 0; }
+  to{ transform: translateY(0); opacity: 1; }
+}
+
+/* Desktop */
+@media (min-width:481px){
+
+  .cs-overlay{ padding:20px }
+
+  .cs-overlay .cs-panel{
+    height:68%;
+    border-top-left-radius:18px;
+    border-top-right-radius:18px;
+  }
+
+  .cs-overlay .cs-list{
+    padding:16px 18px;
+  }
+}

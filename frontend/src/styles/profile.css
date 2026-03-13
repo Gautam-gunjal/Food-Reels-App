@@ -1,0 +1,227 @@
+/* Scoped profile styles with modern mixed-color theme */
+:root{
+  --bg: #0b1220;
+  --card-from: #0f2a40; /* deep navy */
+  --card-to: #16324a; /* teal-blue mix */
+  --accent-1: #7ee8fa; /* cyan */
+  --accent-2: #b793ff; /* soft purple */
+  --muted: rgba(255,255,255,0.12);
+  --glass: rgba(255,255,255,0.04);
+}
+
+.profile-mobile {
+  background: linear-gradient(180deg, var(--bg) 0%, #08101a 100%);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 24px);
+  box-sizing: border-box;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #eaf2ff;
+}
+
+.profile-mobile .pm-card {
+  width: 100%;
+  max-width: min(920px, 96%);
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--card-from) 0%, var(--card-to) 100%);
+  box-shadow: 0 12px 30px rgba(7,12,18,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Header with gentle diagonal accent */
+.profile-mobile .pm-header {
+  padding: clamp(18px, 4vw, 36px);
+  background: linear-gradient(120deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  position: relative;
+}
+
+.profile-mobile .pm-header::after{
+  content: "";
+  position: absolute;
+  left: -40%;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(126,232,250,0.06), rgba(183,147,255,0.04));
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+
+.profile-mobile .pm-header-top {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 3vw, 28px);
+}
+
+.profile-mobile .pm-avatar {
+  width: clamp(92px, 20vw, 160px);
+  height: clamp(92px, 20vw, 160px);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  flex-shrink: 0;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.profile-mobile .pm-avatar:hover{transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 40px rgba(18,42,80,0.6)}
+
+.profile-mobile .pm-info{
+  margin-left: auto;
+  display:flex;
+  flex-direction: column;
+  gap:8px;
+  align-items:flex-end;
+  min-width:0;
+}
+
+.profile-mobile .pm-pill{
+  color: #fff;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid var(--muted);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  backdrop-filter: blur(6px);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.profile-mobile .pm-pill:hover{transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.5)}
+
+.profile-mobile .pm-pill.pm-pill-secondary{
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(90deg, rgba(183,147,255,0.06), rgba(126,232,250,0.04));
+}
+
+.profile-mobile .pm-stats{
+  display:flex;
+  gap: 18px;
+  margin-top: 12px;
+  color: #eaf2ff;
+   justify-content: space-between; 
+}
+
+.profile-mobile .pm-stat{display:flex; flex-direction:column; min-width:0}
+
+.profile-mobile .pm-label{font-size:13px; font-weight:500; opacity:0.85}
+.profile-mobile .pm-value{font-size:18px; font-weight:800; margin-top:6px; text-align: center;}
+
+.profile-mobile .pm-divider{height:1px; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border:none}
+
+.profile-mobile .pm-grid{
+  display:grid;
+  margin-top:12px;
+  grid-template-columns: repeat(auto-fill, minmax(min(120px, 30%), 1fr));
+  gap:12px;
+  padding:14px;
+  box-sizing:border-box;
+}
+
+.profile-mobile .pm-items{
+  aspect-ratio: 4/3;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.025);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.profile-mobile .pm-items:hover{transform: translateY(-6px); box-shadow: 0 18px 40px rgba(7,18,35,0.6)}
+
+.profile-mobile .video{object-fit:cover; width:100%; height:100%; display:block}
+
+/* subtle play overlay for hover */
+.profile-mobile .pm-items::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.18) 100%);
+  pointer-events: none;
+}
+
+
+/* Back button (placed to the left of the avatar in header-top) */
+.pm-header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+/* small circular icon button */
+.pm-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.03);
+  color: #ffffff; /* arrow color, inherits */
+  cursor: pointer;
+  transition: background .16s ease, transform .12s ease;
+  padding: 4px;
+}
+
+/* hover / focus states */
+.pm-back-btn:hover,
+.pm-back-btn:focus {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+  outline: none;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* make svg inherit button color and be crisp */
+.pm-back-btn svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+
+/* If you want the button to be slightly separated on very small screens */
+@media (max-width: 420px) {
+  .pm-back-btn {
+    width: 40px;
+    height: 35px;
+  }
+}
+/* ----------------- Breakpoints ----------------- */
+
+@media (min-width: 600px){
+  .profile-mobile .pm-card{max-width: min(720px, 92%)}
+  .profile-mobile .pm-grid{grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))}
+  .profile-mobile .pm-avatar{width: clamp(96px, 16vw, 140px); height: clamp(96px, 16vw, 140px)}
+}
+
+@media (min-width: 1024px){
+  .profile-mobile{padding: clamp(16px,2.2vw,40px)}
+  .profile-mobile .pm-card{max-width:980px}
+  .profile-mobile .pm-grid{grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:16px; padding: 18px}
+  .profile-mobile .pm-pill{font-size:15px}
+}
+
+@media (max-width:360px){
+  .profile-mobile .pm-pill{padding:8px 10px; font-size:12px}
+  .profile-mobile .pm-grid{grid-template-columns: repeat(3,1fr); gap:6px}
+  .profile-mobile .pm-avatar{width:72px; height:72px}
+}
