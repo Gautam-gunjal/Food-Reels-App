@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../../styles/auth-page.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const FoodPartnerLogin = () => {
+  const [error, setError] = useState("");
   const navigate = useNavigate()
   const onSubmit = async (e) => {
 
@@ -15,15 +16,20 @@ const FoodPartnerLogin = () => {
     const password = e.target.password.value
 
     try {
-      await axios.post("https://food-reels-app.onrender.com/api/auth/food-partner/login",
+      await axios.post(
+        "https://food-reels-app.onrender.com/api/auth/food-partner/login",
         {
           email: email,
           password: password
-        }, { withCredentials: true }
-      )
+        },
+        { withCredentials: true }
+      );
+
+      setError(""); // clear error
       navigate("/Createfood");
+
     } catch (err) {
-      console.log(err)
+      setError(err.response?.data?.message || "Login failed");
     }
   }
   return (
@@ -42,10 +48,10 @@ const FoodPartnerLogin = () => {
             <label>Password</label>
             <input type="password" name="password" placeholder="••••••" />
           </div>
-
+          {error && <p className="error-message">{error}</p>}
           <div className="actions">
             <button type="submit" className="btn">Login</button>
-            <div className="link-muted">Don't have an account? <a href="/food-partner/register">Register</a></div>
+            <div className="link-muted">Don't have an account? <Link to="/food-partner/register">Register</Link></div>
           </div>
 
           <div className="link-muted" style={{ marginTop: 10 }}>
