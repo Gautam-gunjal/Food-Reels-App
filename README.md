@@ -228,9 +228,3 @@ This repo is provided as-is. Add a license file (e.g. MIT) if you plan to open-s
 
 ---
 
-*If you want, I can:*
-
-* generate a `.gitignore` that excludes `node_modules` and `.env`,
-* add a `start`/`dev` script to `backend/package.json`,
-* produce short README variations (one-liner for resume or GitHub project card),
-* open a focused checklist PR with the bug fixes described above.
