@@ -17,7 +17,7 @@ app.use(cors({
 app.use('/api/auth',authroutes)
 app.use('/api/food-partner', foodPartnerRoutes)
 app.use("/api/food", foodroutes)
-app.use("/api/health",healthRoute)
+app.use("/api",healthRoute)
 
 
 module.exports = app;
