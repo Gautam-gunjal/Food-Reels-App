@@ -4,6 +4,7 @@ const cors = require('cors');
 const authroutes = require('./routes/auth.route')
 const foodPartnerRoutes = require("./routes/food-partner.route")
 const foodroutes = require("./routes/food.route")
+const healthRoute = require('./routes/health.route')
 const app=express();
  
 
@@ -16,10 +17,7 @@ app.use(cors({
 app.use('/api/auth',authroutes)
 app.use('/api/food-partner', foodPartnerRoutes)
 app.use("/api/food", foodroutes)
+app.use("/api/health",healthRoute)
 
-app.get("/",(req,res)=>{
-    res.send("hello!")
-   
-})
 
 module.exports = app;
