@@ -40,12 +40,12 @@ const FoodPartnerLogin = () => {
     }finally{
       setLoading(false)
     }
-    
+
   }
   return (
     <div className="auth-page">
       {loading && (
-        <div className="loding-wrapper">
+        <div className="loading-wrapper">
           <div className="loader"></div>
         </div>
       )}

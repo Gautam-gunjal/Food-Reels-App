@@ -211,13 +211,13 @@ html, body { width: 100%; height: 100%; }
   border-radius: 8px;
 }
 
-.auth-page .loding-wrapper{
+.auth-page .loading-wrapper{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.authpage .loader {
+.auth-page .loader {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
