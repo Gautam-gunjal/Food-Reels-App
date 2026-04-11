@@ -25,7 +25,7 @@ const FoodPartnerLogin = () => {
         { withCredentials: true }
       );
 
-      setError(""); // clear error
+      setError("");
       navigate("/Createfood");
 
     } catch (err) {
@@ -39,6 +39,11 @@ const FoodPartnerLogin = () => {
   }
   return (
     <div className="auth-page">
+      {loading && (
+        <div className="loding-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="auth-card">
         <h2>Partner login</h2>
         <p>Access your partner dashboard.</p>
@@ -55,7 +60,7 @@ const FoodPartnerLogin = () => {
           </div>
 
           {error && <p className="error-message">{error}</p>}
-          
+
           <div className="actions">
             <button type="submit" className="btn">Login</button>
             <div className="link-muted">Don't have an account? <Link to="/food-partner/register">Register</Link></div>

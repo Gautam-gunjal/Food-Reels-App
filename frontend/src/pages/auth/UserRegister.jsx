@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 const UserRegister = () => {
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
+
     const onSubmit = async (e) => {
         e.preventDefault()
         const name = e.target.name.value
@@ -12,6 +14,7 @@ const UserRegister = () => {
         const password = e.target.password.value
 
         try {
+            setLoading(true);
             await axios.post("https://food-reels-app.onrender.com/api/auth/user/register",
                 {
                     name: name,
@@ -28,7 +31,10 @@ const UserRegister = () => {
             setTimeout(() => {
                 setError("");
             }, 5000);
+        }finally{
+            setLoading(false)
         }
+        
     }
     return (
         <div className="auth-page">

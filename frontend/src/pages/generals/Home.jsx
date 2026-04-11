@@ -160,7 +160,7 @@ const Home = () => {
 
       {loading && (
         <div className="reels-status">
-          <div>Loading videos…</div>
+          <div className="loader"></div>
         </div>
       )}
 
