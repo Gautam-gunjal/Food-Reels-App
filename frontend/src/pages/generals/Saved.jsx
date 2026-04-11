@@ -136,7 +136,7 @@ const Saved = () => {
     <>
       <div className="reels-feed" ref={feedRef}>
         {loading && (
-        <div className="loading-wrapper">
+        <div className="reels-status">
           <div className="loader"></div>
         </div>
       )}
