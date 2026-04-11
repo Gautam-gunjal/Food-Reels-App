@@ -58,7 +58,7 @@ const VideoCard = ({ video }) => {
 const Home = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const feedRef = useRef(null);
   const observerRef = useRef(null);
 

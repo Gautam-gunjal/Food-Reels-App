@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FoodPartnerRegister = () => {
   const [error, setError] = useState('')
+  const [loading , setLoading] = useState(false)
   const navigate = useNavigate()
   const onSubmit = async (e) => {
 
@@ -18,6 +19,7 @@ const FoodPartnerRegister = () => {
     const password = e.target.password.value
 
     try {
+      setLoading(true)
       await axios.post("https://food-reels-app.onrender.com/api/auth/food-partner/register",
         {
           Businessname: BusinessName,
@@ -35,11 +37,18 @@ const FoodPartnerRegister = () => {
       setTimeout(() => {
         setError("");
       }, 5000);
+    }finally{
+      setLoading(false)
     }
   }
 
   return (
     <div className="auth-page">
+      {loading && (
+        <div className="loading-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="auth-card">
         <h2>Partner registration</h2>
         <p>Register your restaurant or food business.</p>

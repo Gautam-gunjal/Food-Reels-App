@@ -8,6 +8,16 @@ const { v4: uuid } = require("uuid")
 
 async function createfood(req, res) {
 
+     if (!req.file) {
+            return res.status(400).json({ message: "Video is required" });
+        }
+        if (!req.body.name) {
+            return res.status(400).json({ message: "Name is required" });
+        }
+        if (!req.body.description) {
+            return res.status(400).json({ message: "Description is required" });
+        }
+
     try {
         const fileUploadresult = await storageservice.uploadfile(req.file.buffer, uuid())
 

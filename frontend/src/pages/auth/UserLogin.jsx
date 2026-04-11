@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserLogin = () => {
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -13,6 +14,7 @@ const UserLogin = () => {
     const password = e.target.password.value
 
     try {
+      setLoading(true)
       await axios.post("https://food-reels-app.onrender.com/api/auth/user/login",
         {
           email: email,
@@ -27,11 +29,18 @@ const UserLogin = () => {
       setTimeout(() => {
         setError("");
       }, 5000);
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <div className="auth-page">
+      {loading && (
+        <div className="loading-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="auth-card">
         <h2>Welcome back</h2>
         <p>Login to continue ordering.</p>
@@ -48,7 +57,7 @@ const UserLogin = () => {
           </div>
 
           {error && <p className="error-message">{error}</p>}
-          
+
           <div className="actions">
             <button type="submit" className="btn">Login</button>
             <div className="link-muted">New here? <Link to="/user/register">Create account</Link></div>

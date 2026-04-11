@@ -41,7 +41,7 @@ const VideoCard = ({ video }) => {
 
 const Saved = () => {
   const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const feedRef = useRef(null);
   const observerRef = useRef(null);
@@ -136,10 +136,10 @@ const Saved = () => {
     <>
       <div className="reels-feed" ref={feedRef}>
         {loading && (
-          <div className="reels-status">
-            <div>Loading saved videos…</div>
-          </div>
-        )}
+        <div className="loading-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
 
         {error && (
           <div className="reels-status error">
