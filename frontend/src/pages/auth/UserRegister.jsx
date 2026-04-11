@@ -31,13 +31,18 @@ const UserRegister = () => {
             setTimeout(() => {
                 setError("");
             }, 5000);
-        }finally{
+        } finally {
             setLoading(false)
         }
-        
+
     }
     return (
         <div className="auth-page">
+            {loading && (
+                <div className="loading-wrapper">
+                    <div className="loader"></div>
+                </div>
+            )}
             <div className="auth-card">
                 <h2>Create account</h2>
                 <p>Serving flavors, not just reels.</p>

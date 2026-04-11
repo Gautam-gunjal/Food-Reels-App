@@ -11,6 +11,8 @@ const CreateFood = () => {
   const [videoFile, setVideoFile] = useState(null)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+  const [loading, setLoading] = useState(false);
+   const [error, setError] = useState("");
   const videoInputRef = useRef(null)
 
   const handleVideoChange = (e) => {
@@ -39,17 +41,30 @@ const CreateFood = () => {
     formData.append('video', videoFile)
 
     try {
+      setLoading(true)
       await axios.post("https://food-reels-app.onrender.com/api/food", formData, {
         withCredentials: true,
       })
-      navigate('/')  
+      navigate('/')
     } catch (err) {
-      console.error(err)
+      const message = err.response?.data?.message || "Something went wrong";
+      setError(message);
+
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="auth-page">
+      {loading && (
+        <div className="loading-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
       <HamburgerMenu></HamburgerMenu>
       <div className="auth-card create-food-card">
         <h2>Create food item</h2>
@@ -85,15 +100,16 @@ const CreateFood = () => {
 
           <div className="field">
             <label>Name</label>
-            <input type="text" name="name" value={name} placeholder="Food name" onChange={(e)=>setName(e.target.value)} />
+            <input type="text" name="name" value={name} placeholder="Food name" onChange={(e) => setName(e.target.value)} />
           </div>
 
           <div className="field">
             <label>Description</label>
-            <textarea name="description" value={description} placeholder="Short description" rows="4" onChange={(e)=>setDescription(e.target.value)} />
+            <textarea name="description" value={description} placeholder="Short description" rows="4" onChange={(e) => setDescription(e.target.value)} />
           </div>
 
           <div className="actions">
+            {error && <p className="error-message">{error}</p>}
             <button type="submit" className="btn">Create food</button>
           </div>
         </form>
