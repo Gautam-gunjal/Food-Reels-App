@@ -19,22 +19,11 @@ const ReelActions = ({ video }) => {
     setLikesCount((c) => liked ? Math.max(0, c - 1) : c + 1);
     try {
 
-      const res = await axios.post(
+      await axios.post(
         "https://food-reels-app.onrender.com/api/food/like",
         { foodId: video._id },
         { withCredentials: true }
       );
-
-      if (res.data.message === "Food Unliked Successfully") {
-        setLiked(false);
-        setLikesCount((c) => Math.max(0, c - 1));
-
-      } else {
-        setLiked(true);
-        setLikesCount((c) => c + 1);
-
-      }
-
     } catch (err) {
       console.error("Like failed", err);
       setLiked(previousLiked);
@@ -52,16 +41,9 @@ const ReelActions = ({ video }) => {
     setSavedCount((s) => saved ? Math.max(0, s - 1) : s + 1);
 
     try {
-      const res = await axios.post('https://food-reels-app.onrender.com/api/food/save', { foodId: video._id }, { withCredentials: true })
 
-      if (res.data.message === 'Food Unsaved successfully') {
-        setSaved(false)
-        setSavedCount((s) => Math.max(0, s - 1))
-      }
-      else if (res.data.message === 'Food saved successfully') {
-        setSaved(true)
-        setSavedCount((s) => s + 1)
-      }
+      await axios.post('https://food-reels-app.onrender.com/api/food/save', { foodId: video._id }, { withCredentials: true })
+
     } catch (err) {
       console.log(err)
       setSaved(previousSaved);
