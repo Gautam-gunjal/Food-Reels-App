@@ -12,6 +12,11 @@ const ReelActions = ({ video }) => {
   const [showComments, setShowComments] = useState(false);
 
   const toggleLike = async () => {
+    const previousLiked = liked;
+    const previousCount = likesCount;
+
+    setLiked(!liked);
+    setLikesCount((c) => liked ? Math.max(0, c - 1) : c + 1);
     try {
 
       const res = await axios.post(
@@ -23,33 +28,44 @@ const ReelActions = ({ video }) => {
       if (res.data.message === "Food Unliked Successfully") {
         setLiked(false);
         setLikesCount((c) => Math.max(0, c - 1));
+
       } else {
         setLiked(true);
         setLikesCount((c) => c + 1);
+
       }
 
     } catch (err) {
       console.error("Like failed", err);
+      setLiked(previousLiked);
+      setLikesCount(previousCount);
     }
 
   };
 
   const toggleSave = async () => {
-    try{
-      const res = await axios.post('https://food-reels-app.onrender.com/api/food/save',{foodId:video._id},{withCredentials:true})
 
-      if(res.data.message === 'Food Unsaved successfully'){
+    const previousSaved = saved;
+    const previousCount = savedCount;
+
+    setSaved(!saved);
+    setSavedCount((s) => saved ? Math.max(0, s - 1) : s + 1);
+
+    try {
+      const res = await axios.post('https://food-reels-app.onrender.com/api/food/save', { foodId: video._id }, { withCredentials: true })
+
+      if (res.data.message === 'Food Unsaved successfully') {
         setSaved(false)
-        setSavedCount((s)=> Math.max(0,s-1))
+        setSavedCount((s) => Math.max(0, s - 1))
       }
-      else if(res.data.message === 'Food saved successfully')
-      {
+      else if (res.data.message === 'Food saved successfully') {
         setSaved(true)
-        setSavedCount((s)=> s+1)
+        setSavedCount((s) => s + 1)
       }
-    }catch(err)
-    {
+    } catch (err) {
       console.log(err)
+      setSaved(previousSaved);
+      setSavedCount(previousCount);
     }
   };
 
@@ -88,7 +104,7 @@ const ReelActions = ({ video }) => {
         <div className="action-label">{commentsCount}</div>
       </button>
       {showComments && (
-        <CommentSection onClose={()=>setShowComments(false)} setCommentsCount={setCommentsCount} video={video}/>
+        <CommentSection onClose={() => setShowComments(false)} setCommentsCount={setCommentsCount} video={video} />
       )}
     </div>
   );
